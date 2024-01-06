@@ -1,4 +1,4 @@
-<div *ngIf="rental">
+<div *ngIf="rental; else noRental">
     <p>rental-detail works! {{rental.id}}</p>
     <p>rental-detail works! {{rental.title}}</p>
     <p>rental-detail works! {{rental.city}}</p>
@@ -6,3 +6,6 @@
     <p>rental-detail works! {{rental.dailyRate}}</p>
     <p>rental-detail works! {{rental.street}}</p>
 </div>
+<ng-template #noRental> 
+    <p> rental listing not found</p>
+</ng-template>
