@@ -69,7 +69,7 @@ export class RentalService {
           });
 
           observer.next(foundRental);
-        }, 500);
+        }, 10);
       });
     }
 
