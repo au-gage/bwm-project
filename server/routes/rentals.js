@@ -1,5 +1,7 @@
-//This file will be for most API DB calls related to rentals, such as returning all rentals or returning a specific rental
-//given an ID in the path.
+/**
+ * This file will be for most API DB calls related to rentals, such as returning all rentals or returning a specific rental
+ * given an ID in the path.
+ */
 const express = require('express')
 const router = express.Router();
 const db = require('../config/db')
@@ -9,6 +11,7 @@ const db = require('../config/db')
 router.get('', function (req, res) {
     db.query('SELECT * FROM rentals ORDER BY "ID" ASC')
         .then(function (data) {
+            console.log(res)
             res.status(200)
                 .json({
                     status: 'success',
