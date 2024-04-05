@@ -1,3 +1,6 @@
+/**
+ * Class that will grab all rentals from the database and get them ready to be displayed
+ */
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RentalListItemComponent } from '../rental-list-item/rental-list-item.component';
@@ -19,20 +22,6 @@ export class RentalListComponent {
   constructor(private rentalService: RentalService) { }
 
   ngOnInit() {
-    
-    const rentalObservable = this.rentalService.getRentals();
-
-    rentalObservable.subscribe(
-      (rentals: Rental[]) => {
-        
-        this.rentals = rentals;
-        
-      },
-      (err: any) => {
-        
-      },
-      () => {
-        
-      });
+    this.rentals = this.rentalService.getRentals();
   }
 }
