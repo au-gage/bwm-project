@@ -1,11 +1,51 @@
-<div *ngIf="rental; else noRental">
-    <p>rental-detail works! {{rental.id}}</p>
-    <p>rental-detail works! {{rental.title}}</p>
-    <p>rental-detail works! {{rental.city}}</p>
-    <p>rental-detail works! {{rental.category}}</p>
-    <p>rental-detail works! {{rental.dailyRate}}</p>
-    <p>rental-detail works! {{rental.street}}</p>
-</div>
-<ng-template #noRental> 
-    <p> rental listing not found</p>
-</ng-template>
+<section id="rentalDetails" *ngIf="rental">
+    <div class="upper-section">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="{{rental.image}}" alt="">
+        </div>
+        <div class="col-md-6">
+          <!-- Will be replaced with map !!!! -->
+          <img src="{{rental.image}}" alt="">
+        </div>
+      </div>
+    </div>
+  
+    <div class="details-section">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="rental">
+            <h2 class="rental-type {{rental.category}}">{{rental.shared ? 'Shared' : 'Whole'}} {{rental.category}}</h2>    
+            <h1 class="rental-title">{{rental.title}}</h1>
+            <h2 class="rental-city">{{rental.city}}</h2>
+            <div class="rental-room-info">
+              <span><i class="fa fa-building"></i>{{rental.bedrooms}} bedroom(s)</span><br>
+              <span><i class="fa fa-user"></i> {{rental.bedrooms + 4}} guests</span><br>
+              <span><i class="fa fa-bed"></i> {{rental.bedrooms + 2}} bed(s)</span><br>
+            </div>
+            <p class="rental-description">
+              {{rental.description}}
+            </p>
+            <hr>
+            <div class="rental-assets">
+              <h3 class="title">Assets</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <span><i class="fa fa-asterisk"></i> Cooling</span><br><br>
+                  <span><i class="fa fa-thermometer"></i> Heating</span><br><br>
+                  <span><i class="fa fa-location-arrow"></i> Iron</span><br><br>
+                </div>
+                <div class="col-md-6">
+                  <span><i class="fa fa-desktop"></i> Working area</span><br><br>
+                  <span><i class="fa fa-cube"></i> Washing machine</span><br><br>
+                  <span><i class="fa fa-cube"></i> Dishwasher</span><br><br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4"> BOOKING</div>
+      </div>
+    </div>
+  </section>
+  
