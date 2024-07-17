@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgPipesModule } from 'ngx-pipes';
 
 import { RentalComponent } from './rental.component';
@@ -22,9 +22,5 @@ export const routes: Routes = [
   {path: '**', component: WildCardComponent}
 ];
 
-@NgModule({
-  imports: [CommonModule, RouterModule.forRoot(routes), HttpClientModule, NgPipesModule],
-  exports: [RouterModule],
-  providers: [RentalService,NgPipesModule]
-})
+@NgModule({ exports: [RouterModule], imports: [CommonModule, RouterModule.forRoot(routes), NgPipesModule], providers: [RentalService, NgPipesModule, provideHttpClient(withInterceptorsFromDi())] })
 export class AppRoutingModule { }
