@@ -4,6 +4,7 @@
 
 import { Injectable } from "@angular/core";
 import { Rental } from "./rental.model";
+import { lastValueFrom,firstValueFrom } from 'rxjs';
 import { HttpClient } from "@angular/common/http";
 
 
@@ -14,25 +15,27 @@ export class RentalService {
 
     constructor(private http: HttpClient) {}
     /**  Returns a rental given a specific ID*/
-    public getRentalById(rentalId: string) {
-      const req = this.http.get('/api/v1/rentals/' + rentalId)
-      req.subscribe((response) => {
-        this.results = response;
-      });
-      let JSONString = JSON.stringify(this.results)
-      let JSONObject = JSON.parse(JSONString)
+    public async getRentalById(rentalId: string) {
+      console.log(rentalId)
+      const response = await firstValueFrom(this.http.get('/api/v1/rentals/' + rentalId))
+      this.results = response;
+      if(this.results) {
+        return this.results.data[0];
+      }
+      return null;
 
-      return JSONObject.data;
     }
     /**  Returns all the rentals */
     public getRentals()  {
       const req = this.http.get('/api/v1/rentals/')
       req.subscribe((response) => {
         this.results = response;
+      console.log(this.results)
       });
-      let JSONString = JSON.stringify(this.results)
-      let JSONObject = JSON.parse(JSONString)
-
-      return JSONObject.data;
+      if(this.results) {
+        return this.results.data;
+      }
+      return null;
+      
     }
 }

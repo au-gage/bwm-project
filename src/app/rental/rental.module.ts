@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { NgPipesModule } from 'ngx-pipes';
 
 import { RentalComponent } from './rental.component';
 import { RentalListComponent } from './rental-list/rental-list.component';
@@ -22,8 +23,8 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(routes), HttpClientModule],
+  imports: [CommonModule, RouterModule.forRoot(routes), HttpClientModule, NgPipesModule],
   exports: [RouterModule],
-  providers: [RentalService]
+  providers: [RentalService,NgPipesModule]
 })
 export class AppRoutingModule { }
